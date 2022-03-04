@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'GuestController@home')->name('home');
+
+//autenticazione
+// Route::post('/login', 'GuestController@loginweb')->name('loginweb');
+Route::post('/login', 'Auth\LoginController@login') -> name('login');
+Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
+
+
